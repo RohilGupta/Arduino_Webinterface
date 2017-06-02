@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Remotely Control a robot</title>
+  
+  <?php include "led.php"; ?>
+<style>
+body {margin:0;}
+* {
+    /*border-style: solid;*/
+    -webkit-box-sizing: border-box;
+}
+.nav-bar {
+    height: 50px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+li {
+    float: left;
+}
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+li a:hover:not(.active) {
+    background-color: #111;
+}
+.button {  
+  display: inline-block;
+  padding: 15px 25px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+  margin-top: 10px;
+}
+.button2{
+  width: 250px;
+}
+.button:hover {background-color: #3e8e41}
+.button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+.active {
+    background-color: #4CAF50; 
+}
+.button-family {
+  display: inline-block;
+  float: right;
+  position: absolute;
+  margin-top: 11%;
+  margin-left: 5%;
+  vertical-align: middle;
+  height: 230px;
+  width: 510px;
+}
+.wrapper{
+  width: auto;
+  height: auto;
+  overflow: auto;
+}
+</style>
+
+</head>
+<body>
+
+<div class="nav-bar">
+  <ul>
+    <li><a class="active" href="#home">Home</a></li>
+    <li><a href="#led_control">Led Control</a></li>
+    <li><a href="#robot_control">Robot Arm Control</a></li>
+  </ul>
+</div>
+
+<div class="wrapper">
+	<script id="cid0020000157143977394" data-cfasync="false" async src="//st.chatango.com/js/gz/emb.js" style="width: 267px;height: 360px;">{"handle":"wossrobotics","arch":"js","styles":{"a":"CC0000","b":100,"c":"FFFFFF","d":"FFFFFF","k":"CC0000","l":"CC0000","m":"CC0000","n":"FFFFFF","p":"10","q":"CC0000","r":100,"pos":"br","cv":1,"cvbg":"CC0000","cvw":200,"cvh":30,"surl":0,"cnrs":"0.35","ticker":1,"fwtickm":1}}</script>
+	
+	<!-- <iframe src="http://streambadge.com/livestream/wossRobotics/" width="700" height="500" display="inline-block" frameborder="5"></iframe>
+	-->
+	
+	<iframe src="https://appear.in/led_control" width="700" height="500" display="inline-block" frameborder="5"></iframe>
+	
+	
+	<div class="button-family" align="center">
+  		<button type="button" class="button" onmousedown="mouseDown(1)" onmouseup="mouseUp()" margin-left="10%">UP</button>
+  		</br>
+  		<button type="button" class="button" onmousedown="mouseDown(3)" onmouseup="mouseUp()">LEFT</button>
+  		<button type="button" class="button" onmousedown="mouseDown(2)" onmouseup="mouseUp()">DOWN</button>
+  		<button type="button" class="button" onmousedown="mouseDown(4)" onmouseup="mouseUp()">RIGHT</button>
+  		</br>
+  		<button type="button" class="button button2" onmousedown="mouseDown(5)" onmouseup="mouseUp()">CLAW OPEN</button>
+  		<button type="button" class="button button2" onmousedown="mouseDown(6)" onmouseup="mouseUp()">CLAW CLOSE</button>
+  		<!-- </br> -->
+	</div>
+	<!-- </font> -->
+</div>
+
+<!--
+
+ <div style="padding:20px;margin-top:30px;height:1500px;">
+<p align="center"> 	<!--Used to center text in middle of monitor screen-->
+
+<!--
+<font size="8">		<!--Sets the tex font size to 8 -->
+<!--
+</div>
+
+-->
+
+<script>
+function setState(state) {
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("GET", "led.php?state=" + state, true);
+        xhttp.send();
+        
+    } 
+function mouseDown(key)
+{
+    // Detect which key was pressed
+    if( key == '1' ){
+        setState(1);
+        
+    }
+    // Repeat for each key you care about...
+   else if (key == '2'){
+    	setState(2);
+        
+    }
+    else if (key == '3'){
+    	setState(3);
+    }
+    else if (key == '4'){
+    	setState(4);
+    }
+    else if (key == '5'){
+    	setState(5);
+    }else if (key == '6'){
+    	setState(6);
+    }else if (key =='7'){
+        setState();
+    }
+}
+function mouseUp(){
+    setState(9);
+}  
+</script>
+
+</body>
+</html>
